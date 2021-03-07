@@ -1,0 +1,16 @@
+{
+  "name": "nodejs-gmp-2021",
+  "version": "1.0.0",
+  "description": "Node.js mentoring program 2021 home tasks.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evgenijkorob/nodejs-gmp-2021.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evgenijkorob/nodejs-gmp-2021/issues"
+  },
+  "homepage": "https://github.com/evgenijkorob/nodejs-gmp-2021#readme"
+}
