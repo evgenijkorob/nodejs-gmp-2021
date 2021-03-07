@@ -6,6 +6,9 @@
     "type": "git",
     "url": "git+https://github.com/evgenijkorob/nodejs-gmp-2021.git"
   },
+  "scripts": {
+    "task1_1": "nodemon ./task1/task1_1.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
