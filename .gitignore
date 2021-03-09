@@ -102,3 +102,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Generated txt from csv files for task 1.2
+task1/csv/*.txt
