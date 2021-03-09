@@ -1,7 +1,7 @@
-const { createReadStream, createWriteStream } = require('fs');
-const { Transform } = require('stream');
-const { createInterface } = require('readline');
-const csvtojson = require('csvtojson');
+import { createReadStream, createWriteStream } from 'fs';
+import { Transform } from 'stream';
+import { createInterface } from 'readline';
+import csvtojson from 'csvtojson';
 
 const csvFolderPath = './task1/csv';
 const csvFileName = 'books.csv';

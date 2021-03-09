@@ -1,4 +1,4 @@
-const { Transform } = require('stream');
+import { Transform } from 'stream';
 
 class ReverseTransform extends Transform {
   _transform(buf, encoding, callback) {
