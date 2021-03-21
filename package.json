@@ -6,6 +6,10 @@
     "type": "git",
     "url": "git+https://github.com/evgenijkorob/nodejs-gmp-2021.git"
   },
+  "scripts": {
+    "task1_1": "nodemon --exec babel-node -- ./task1/task1_1.js",
+    "task1_2": "nodemon --exec babel-node -- ./task1/task1_2.js"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -14,6 +18,12 @@
   },
   "homepage": "https://github.com/evgenijkorob/nodejs-gmp-2021#readme",
   "devDependencies": {
+    "@babel/core": "^7.13.10",
+    "@babel/node": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
     "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "csvtojson": "^2.0.10"
   }
 }
