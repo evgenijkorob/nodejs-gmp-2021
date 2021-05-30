@@ -15,6 +15,7 @@
     "task2": "nodemon --watch ./task2 ./task2/app.ts",
     "task3": "nodemon --watch ./task3 ./task3/app.ts",
     "task4": "nodemon --watch ./task4 ./task4/app.ts",
+    "task5": "nodemon --watch ./task5 ./task5/app.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
   },
@@ -49,7 +50,9 @@
     "joi": "^17.4.0",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.3",
+    "safe-stable-stringify": "^1.1.1",
     "sequelize": "^6.6.2",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "winston": "^3.3.3"
   }
 }
