@@ -14,6 +14,7 @@
     "task1_2": "nodemon --exec babel-node -- ./task1/task1_2.js",
     "task2": "nodemon --watch ./task2 ./task2/app.ts",
     "task3": "nodemon --watch ./task3 ./task3/app.ts",
+    "task4": "nodemon --watch ./task4 ./task4/app.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
   },
