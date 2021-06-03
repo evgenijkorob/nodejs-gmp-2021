@@ -13,6 +13,7 @@
     "task1_1": "nodemon --exec babel-node -- ./task1/task1_1.js",
     "task1_2": "nodemon --exec babel-node -- ./task1/task1_2.js",
     "task2": "nodemon --watch ./task2 ./task2/app.ts",
+    "task3": "nodemon --watch ./task3 ./task3/app.ts",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
   },
@@ -30,6 +31,7 @@
     "@types/express": "^4.17.11",
     "@types/node": "^14.14.37",
     "@types/uuid": "^8.3.0",
+    "@types/validator": "^13.1.3",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "eslint": "^7.23.0",
@@ -44,6 +46,9 @@
     "csvtojson": "^2.0.10",
     "express": "^4.17.1",
     "joi": "^17.4.0",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2",
     "uuid": "^8.3.2"
   }
 }
