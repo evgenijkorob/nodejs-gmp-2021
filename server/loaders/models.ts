@@ -2,8 +2,10 @@ import { Sequelize } from 'sequelize';
 import { dbConfig } from '../config';
 import { GroupModel, defineGroupModel } from '../group';
 import { AppLogger } from '../loggers';
-import { UserModel, defineUserModel } from '../user';
+import { UserModel, defineUserModel, UserCreationAttributes } from '../user';
 import { defineUserGroupModel } from '../user-group';
+import { readFile } from 'fs/promises';
+import * as path from 'path';
 
 export type AppModels = [UserModel, GroupModel];
 
@@ -51,5 +53,30 @@ export async function loadModels(logger: AppLogger): Promise<AppModels> {
     });
 
     throw err;
+  }
+}
+
+export async function insertInitialUsers(userModel: UserModel, logger: AppLogger): Promise<void> {
+  try {
+    const { count } = await userModel.findAndCountAll();
+
+    if (count === 0) {
+      const usersToInsertJSON: string = await readFile(path.join(__dirname, './initial-users.json'), { encoding: 'utf-8' });
+      const usersToInsert: UserCreationAttributes[] = JSON.parse(usersToInsertJSON);
+
+      for (const userToCreate of usersToInsert) {
+        await userModel.create(userToCreate);
+      }
+
+      logger.info('initial users successfully inserted', {
+        instance: instanceName,
+        method: 'insertInitialUsers'
+      });
+    }
+  } catch (err) {
+    logger.error('error when trying to insert initial users', {
+      instance: instanceName,
+      method: 'insertInitialUsers'
+    });
   }
 }

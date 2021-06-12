@@ -12,6 +12,10 @@ export class UserService {
     return this.repository.findOneByPk(id);
   }
 
+  public async getUserByLogin(login: string): Promise<User> {
+    return this.repository.findOneByLogin(login);
+  }
+
   public async createUser(dto: UserDTO): Promise<User> {
     return this.repository.create(dto);
   }

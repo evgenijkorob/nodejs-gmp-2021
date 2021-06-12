@@ -83,6 +83,16 @@ export class UserRepository {
     return users.map(user => this.mapper.toDomain(user));
   }
 
+  public async findOneByLogin(login: string): Promise<User> {
+    const user: UserInstance = await this.findRecordedOneByLogin(login);
+
+    if (!user || user.isDeleted) {
+      throw new NoUserError();
+    }
+
+    return this.mapper.toDomain(user);
+  }
+
   private async findRecordedOneByLogin(login: string): Promise<UserInstance> {
     return await this.model.findOne({
       where: {

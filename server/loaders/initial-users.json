@@ -1,0 +1,17 @@
+[
+  {
+    "login": "evgen@mail.ru",
+    "password": "12345678evgen",
+    "age": 22
+  },
+  {
+    "login": "mary@mail.ru",
+    "password": "12345678mary",
+    "age": 35
+  },
+  {
+    "login": "alya@mail.ru",
+    "password": "12345678alya",
+    "age": 23
+  }
+]

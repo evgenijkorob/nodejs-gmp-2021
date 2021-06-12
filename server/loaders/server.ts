@@ -3,16 +3,23 @@ import { serverConfig } from '../config';
 import { AppLogger } from '../loggers';
 import { handleAllErrors } from '../middleware';
 import { AppControllers } from './controller';
+import cors from 'cors';
 
 export async function configureServer(controllers: AppControllers, logger: AppLogger): Promise<void> {
-  const [userController, groupController] = controllers;
+  const [authController, userController, groupController] = controllers;
   const app: Express = express();
   const port: number = serverConfig.port;
 
   app
+    .use(cors())
     .use(json())
-    .use('/api/v1', userController.getRouter())
-    .use('/api/v1', groupController.getRouter())
+    .use('/', authController.getRouter())
+    .use(
+      '/api/v1',
+      authController.authenticate.bind(authController),
+      userController.getRouter(),
+      groupController.getRouter()
+    )
     .use(handleAllErrors(logger));
 
   return new Promise((resolve) => {
