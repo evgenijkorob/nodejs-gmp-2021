@@ -15,6 +15,7 @@ import { GroupValidator } from './group-validator';
 import { AddUsersToGroupBody, RequestWithGroupId } from './group-request.interface';
 import { ControllerRequestLogger, getControllerRequestLogger } from '../middleware';
 import { AppLogger } from '../loggers';
+import { GROUPS_BASE_URL, GROUP_ID_PARAM_NAME } from './group-controller.constants';
 
 export class GroupController {
   private readonly router: Router;
@@ -40,7 +41,7 @@ export class GroupController {
 
   private setupRouter(router: Router): Router {
     router
-      .route('/groups')
+      .route(GROUPS_BASE_URL)
       .get(
         this.requestLogger('getAllGroups'),
         this.getAllGroups.bind(this)
@@ -52,13 +53,13 @@ export class GroupController {
         this.createGroup.bind(this)
       );
 
-    router.param('groupId', this.requestLogger('validateGroupIdParam'));
-    router.param('groupId', this.validateGroupIdParam.bind(this));
-    router.param('groupId', this.requestLogger('handleGroupIdParam'));
-    router.param('groupId', this.handleGroupIdParam.bind(this));
+    router.param(GROUP_ID_PARAM_NAME, this.requestLogger('validateGroupIdParam'));
+    router.param(GROUP_ID_PARAM_NAME, this.validateGroupIdParam.bind(this));
+    router.param(GROUP_ID_PARAM_NAME, this.requestLogger('handleGroupIdParam'));
+    router.param(GROUP_ID_PARAM_NAME, this.handleGroupIdParam.bind(this));
 
     router
-      .route('/groups/:groupId')
+      .route(`${GROUPS_BASE_URL}/:${GROUP_ID_PARAM_NAME}`)
       .get(
         this.requestLogger('getGroup'),
         this.getGroup.bind(this)
@@ -179,7 +180,7 @@ export class GroupController {
     try {
       await this.service.deleteGroup(req.groupId);
 
-      res.status(200);
+      res.sendStatus(200);
     } catch (err) {
       return next(err);
     }

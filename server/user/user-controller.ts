@@ -15,6 +15,7 @@ import { UserValidator } from './user-validator';
 import { AutoSuggestUserQueryParams, RequestWithUserId } from './user-request.interface';
 import { AppLogger } from '../loggers';
 import { ControllerRequestLogger, getControllerRequestLogger } from '../middleware';
+import { USERS_BASE_URL, USER_ID_PARAM_NAME } from './user-controller.constants';
 
 export class UserController {
   private readonly router: Router;
@@ -40,7 +41,7 @@ export class UserController {
 
   private setupRouter(router: Router): Router {
     router
-      .route('/users')
+      .route(USERS_BASE_URL)
       .get(
         this.requestLogger('validateAutoSuggestQueryParams'),
         this.validateAutoSuggestQueryParams.bind(this),
@@ -54,13 +55,13 @@ export class UserController {
         this.createUser.bind(this)
       );
 
-    router.param('userId', this.requestLogger('validateUserIdParam'));
-    router.param('userId', this.validateUserIdParam.bind(this));
-    router.param('userId', this.requestLogger('handleUserIdParam'));
-    router.param('userId', this.handleUserIdParam.bind(this));
+    router.param(USER_ID_PARAM_NAME, this.requestLogger('validateUserIdParam'));
+    router.param(USER_ID_PARAM_NAME, this.validateUserIdParam.bind(this));
+    router.param(USER_ID_PARAM_NAME, this.requestLogger('handleUserIdParam'));
+    router.param(USER_ID_PARAM_NAME, this.handleUserIdParam.bind(this));
 
     router
-      .route('/users/:userId')
+      .route(`${USERS_BASE_URL}/:${USER_ID_PARAM_NAME}`)
       .get(
         this.requestLogger('getUser'),
         this.getUser.bind(this))
@@ -176,7 +177,7 @@ export class UserController {
     try {
       await this.service.deleteUser(req.userId);
 
-      res.status(200);
+      res.sendStatus(200);
     } catch (err) {
       return next(err);
     }
