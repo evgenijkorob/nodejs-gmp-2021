@@ -1,0 +1,14 @@
+{
+  "dbConfig": {
+    "database": "gmp_karabeinikau",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "11235813pstgrsql",
+    "dialect": "postgres",
+    "logging": false
+  },
+  "serverConfig": {
+    "port": 5000
+  }
+}
