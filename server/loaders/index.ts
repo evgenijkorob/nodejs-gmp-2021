@@ -1,7 +1,7 @@
 import { AppControllers, loadControllers } from './controller';
 import { appLogger, AppLogger } from '../loggers';
 import { setProcessLogging } from './logging';
-import { AppModels, loadModels } from './models';
+import { AppModels, insertInitialUsers, loadModels } from './models';
 import { configureServer } from './server';
 
 export async function startupApplication(): Promise<void> {
@@ -11,6 +11,10 @@ export async function startupApplication(): Promise<void> {
 
   try {
     const models: AppModels = await loadModels(logger);
+    const [userModel] = models;
+
+    await insertInitialUsers(userModel, logger);
+
     const controllers: AppControllers = loadControllers(models, logger);
 
     await configureServer(controllers, logger);
