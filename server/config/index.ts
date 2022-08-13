@@ -1,15 +1,14 @@
 import { Options as SequelizeOptions } from 'sequelize';
+import path from 'path';
 
-export const dbConfig: SequelizeOptions = {
-  database: 'gmp_karabeinikau',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: '11235813pstgrsql',
-  dialect: 'postgres',
-  logging: false
-};
+process.env['NODE_CONFIG_DIR'] = path.join(__dirname);
 
-export const serverConfig = {
-  port: 5000
-};
+import config from 'config';
+
+export interface ServerConfig {
+  port: number;
+}
+
+export const dbConfig: SequelizeOptions = config.get('dbConfig');
+
+export const serverConfig: ServerConfig = config.get('serverConfig');
